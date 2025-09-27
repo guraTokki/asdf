@@ -80,6 +80,11 @@ trep_data/*.trd
 # Windows Zone.Identifier files (download metadata)
 *:Zone.Identifier
 
+# Backup and broken files
+*.back
+*.backup
+*.broken
+
 # Generated documentation
 doc/
 docs/generated/
