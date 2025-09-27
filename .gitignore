@@ -85,6 +85,10 @@ trep_data/*.trd
 *.backup
 *.broken
 
+# Test storage and migration files
+test_storage/
+*migrated*.cpp
+
 # Generated documentation
 doc/
 docs/generated/
