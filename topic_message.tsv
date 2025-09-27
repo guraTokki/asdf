@@ -1,0 +1,8 @@
+spec_code	sequence	is_key	kor_name	eng_name	field_type	length	description
+TOPIC_MSG	1	Y	매직	magic	UINT	4	Magic number
+TOPIC_MSG	2	N	토픽	topic	UINT	4	Topic ID
+TOPIC_MSG	3	N	글로벌시퀀스	global_seq	UINT	4	Global sequence
+TOPIC_MSG	4	N	토픽시퀀스	topic_seq	UINT	4	Topic sequence
+TOPIC_MSG	5	N	타임스탬프	timestamp	ULONG	8	Timestamp
+TOPIC_MSG	6	N	데이터크기	data_size	UINT	4	Data size
+TOPIC_MSG	7	N	데이터	data	CHAR	32	Message data

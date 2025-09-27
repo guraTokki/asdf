@@ -1,0 +1,14 @@
+name: "JAPAN_EQUITY_MASTER"
+description: "일본 주식 마스터"
+master_type: "HashMaster"
+# Layout
+layout: "MMP_EQUITY_MASTER"
+# HashMaster config
+max_record_count: 50000    # 일본 주식 약 4만 종목 대응
+max_record_size: 2048      # 일본 주식 필드가 많아 큰 레코드 사이즈
+hash_count: 50003          # 해시 버킷
+primary_field_len: 32      # 일본 RIC 길이 (XXXX.T 형태)
+secondary_field_len: 32
+use_lock: true
+filename: "t2ma_japan_equity_master"
+log_level: 2  # LOG_INFO

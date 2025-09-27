@@ -1,0 +1,356 @@
+# DSS_EQUITY_MASTER Layout Specification
+layout_name: "DSS_EQUITY_MASTER"
+description: "DSS Equity Master Layout"
+
+fields:
+  - key_field: false
+    korean_name: "시장구분-FILECODE"
+    english_name: "MKT_GB"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "시장구분"
+
+  - key_field: false
+    korean_name: "거래소코드-Exchange Code"
+    english_name: "EXCHG_CD"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "거래소코드"
+
+  - key_field: false
+    korean_name: "통화코드-Currency Code"
+    english_name: "CUR_CD"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "통화코드"
+
+  - key_field: true
+    korean_name: "로이터코드-RIC"
+    english_name: "RIC_CD"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "기본 로이터 코드(RIC) (ex. AAPL.O, 005930.KS, /AAPL.O, /005930.KS)"
+
+  - key_field: false
+    korean_name: "심볼코드-Ticker"
+    english_name: "SYMBOL_CD"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "거래소에서 사용하는 종목 단축심볼코드 (ex. AAPL, A005930)"
+
+  - key_field: false
+    korean_name: "ISIN코드-ISIN"
+    english_name: "ISIN_CD"
+    field_type: "char"
+    length: 12
+    decimal: 0
+    description: "ISIN 코드(미국 미제공, KR7005930003)"
+
+  - key_field: false
+    korean_name: "영문명-Security Description"
+    english_name: "ENG_NM"
+    field_type: "char"
+    length: 80
+    decimal: 0
+    description: "영문명(단축)"
+
+  - key_field: false
+    korean_name: "상장주식수-Shares Amout"
+    english_name: "SHARES_VOL"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "상장주수"
+
+  - key_field: false
+    korean_name: "상장일자-First Trade Date"
+    english_name: "SHARES_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "최초 상장일 (현지시간)"
+
+  - key_field: false
+    korean_name: "최종거래일자-Universal Close Price Date"
+    english_name: "HST_CLOSE_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "최종거래일자"
+
+  - key_field: false
+    korean_name: "전일종가-Universal Close Price"
+    english_name: "HST_CLOSE_PRC"
+    field_type: "char"
+    length: 12
+    decimal: 0
+    description: "999999999999, 소수점 포함, 상품에 따라 소수점 위치 설정"
+
+  - key_field: false
+    korean_name: "전일거래량-Volume"
+    english_name: "HST_VOL"
+    field_type: "char"
+    length: 12
+    decimal: 0
+    description: "999999999999"
+
+  - key_field: false
+    korean_name: "전일거래대금-Turnover"
+    english_name: "HST_AMT"
+    field_type: "char"
+    length: 12
+    decimal: 0
+    description: "999999999999"
+
+  - key_field: false
+    korean_name: "로이터업종구분-TRBC Industry Group Code"
+    english_name: "IND_GR_GB"
+    field_type: "char"
+    length: 6
+    decimal: 0
+    description: "로이터업종구분(Industry Group)"
+
+  - key_field: false
+    korean_name: "증권구분-ASSET Category"
+    english_name: "EQY_GB"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "(2019.08.19) 추가 - 오인명 차장 요청"
+
+  - key_field: false
+    korean_name: "로이터업종구분-TRBC Activity  Code"
+    english_name: "IND_GR_GB_DETAIL"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "로이터업종구분(TRBC Activity Codde)"
+
+  - key_field: false
+    korean_name: "상장폐지여부-Trading Status"
+    english_name: "TRD_STAT"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "0 : 상장폐지, 1 : 정상"
+
+  - key_field: false
+    korean_name: "발행전거래여부-When Issued Flag"
+    english_name: "ISSUED_FLAG"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "해당:Y"
+
+  - key_field: false
+    korean_name: "종목상세분류-Thomson Reuters Classification Code"
+    english_name: "EQY_DETAIL_GB"
+    field_type: "char"
+    length: 15
+    decimal: 0
+    description: "ex). ETFB, ETFC… (4자리, AAAA)"
+
+  - key_field: false
+    korean_name: "리퍼 코드-Lipper ID"
+    english_name: "LIPPER_CD"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "리퍼코드 8자리, 99999999"
+
+  - key_field: false
+    korean_name: "테스트RIC여부-Is Test Instrument"
+    english_name: "TEST_RIC_YN"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "테스트RIC : Y, 그외 : null"
+
+  - key_field: false
+    korean_name: "재무제표보고서번호-Quote Level RepNo"
+    english_name: "QUOTE_REPNO"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "AAAAAAAAAAAAAAAAAAAA, 20자리"
+
+  - key_field: false
+    korean_name: "Quote ID"
+    english_name: "QUOTE_ID"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "99999999999999999999, 20자리"
+
+  - key_field: false
+    korean_name: "상장여부-Listing Status"
+    english_name: "LISTING_STATUS"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "IPO 종목 구분. AAAAAAAAAA, 10자리"
+
+  - key_field: false
+    korean_name: "시가총액-Market Capitalization Local"
+    english_name: "CAP_SAMT"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "시가총액, 999999999999999999.999999999"
+
+  - key_field: false
+    korean_name: "시가총액-Market Capitalization"
+    english_name: "CAP_SAMT1"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "시가총액, 999999999999999999.999999999"
+
+  - key_field: false
+    korean_name: "시가총액기준통화-CAP_SAMT-Local Currency"
+    english_name: "CAP_SAMT_CUR_CD"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "시가총액 현지 통화코드"
+
+  - key_field: false
+    korean_name: "시가총액일자-Market Capitalization Update Date"
+    english_name: "CAP_SAMT_UPDATE_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "시가총액 업데이트 일자"
+
+  - key_field: false
+    korean_name: "선강퉁후강퉁구분"
+    english_name: "CHN_CON_E_INDICATER_CD"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "AAAAAAAAAAAAAAAAAAAA, 20자리(수정가능성 있음)"
+
+  - key_field: false
+    korean_name: "거래소 국가코드-Exchange Country Code"
+    english_name: "NATION_CD"
+    field_type: "char"
+    length: 5
+    decimal: 0
+    description: "AAAAA, 5자리(수정가능성 있음)"
+
+  - key_field: false
+    korean_name: "SEDOL"
+    english_name: "SEDOL_CD"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "SEDOL Code. AAAAAAA"
+
+  - key_field: false
+    korean_name: "액면가 통화코드-Nominal Value Currency"
+    english_name: "NORMAL_VAL_CUR"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "통화코드"
+
+  - key_field: false
+    korean_name: "중국시장구분-Share Class"
+    english_name: "SHARE_CLASS"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "Main/GEN 구분. AAAAAAAAAA, 10자리(수정가능성 있음)"
+
+  - key_field: false
+    korean_name: "종목종류구분-Asset SubType"
+    english_name: "ASSET_SUB_TYPE"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "종목 종류 구분,AAAA"
+
+  - key_field: false
+    korean_name: "종목분류상세- Classification Scheme Description"
+    english_name: "ISSUE_DESC"
+    field_type: "char"
+    length: 50
+    decimal: 0
+    description: "종목분류 설명. AAA…AAA, 50자리(variable)"
+
+  - key_field: false
+    korean_name: "Instrument ID"
+    english_name: "ISSUE_PERMID"
+    field_type: "char"
+    length: 20
+    decimal: 0
+    description: "AAAAAAAAAAAAAAAAAAAA"
+
+  - key_field: false
+    korean_name: "영문명(상세)-Security Long Description"
+    english_name: "DETAIL_ENG_NM"
+    field_type: "char"
+    length: 150
+    decimal: 0
+    description: "영문명(상세)"
+
+  - key_field: false
+    korean_name: "본사소재지-Domicile"
+    english_name: "DOMICILE"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "국가코드 2자리, AA"
+
+  - key_field: false
+    korean_name: "액면가"
+    english_name: "FACE_PRC"
+    field_type: "char"
+    length: 12
+    decimal: 0
+    description: "액면가 최대 23자리. 99999999999.9999999999"
+
+  - key_field: false
+    korean_name: "GICS산업분류코드-GICS Industry Code"
+    english_name: "GICS_IND_CD"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "GICS 산업분류 Lv.4, 99999999 8자리"
+
+  - key_field: false
+    korean_name: "When Distributed Flag"
+    english_name: "DISTRIBUTED_FLAG"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "When Distributed Flag"
+
+  - key_field: false
+    korean_name: "ETP부과대상여부 - FTT Applied"
+    english_name: "FTT_APPLIED"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "ETP부과대상여부, 대상:Y"
+
+  - key_field: false
+    korean_name: "인지세여부-Stamp Duty Flag"
+    english_name: "STAMP_DUTY_FLAG"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "인지세여부, 인지세대상:Y"
+
+  - key_field: false
+    korean_name: "마켓구분-Market segment Name"
+    english_name: "MARKET_SEG_NM"
+    field_type: "char"
+    length: 30
+    decimal: 0
+    description: "Market segment Name"

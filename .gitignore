@@ -1,0 +1,126 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories
+build/
+Build/
+BUILD/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Data files (might contain sensitive information)
+data/
+*.db
+*.sqlite
+
+# Memory mapped files and runtime data
+mmap/
+*.dataindex
+*.hashindex
+*.dat
+
+# Large TREP data files (sample data, not needed in repo)
+trep_data/*.txt
+trep_data/*.dat
+trep_data/*.trd
+
+# Generated documentation
+doc/
+docs/generated/
+
+# Backup files
+*.bak
+*~
+
+# Temporary socket files
+/tmp/
+*.sock
+
+# Memory dumps
+core
+*.core
+
+# Package managers
+conan/
+vcpkg/
+
+# Local environment files
+.env
+.env.local
+
+# Testing artifacts
+test_results/
+coverage/
+
+# Object files from individual compilation
+*.o.d
+*.d
+
+# Make dependency files
+*.dep
+*.deps/
+
+# Profiling
+*.prof
+*.gcov
+*.gcda
+*.gcno
+
+# Specific to this project
+out
+demo_hash_master
+demo_memory_master
+*.o

@@ -1,0 +1,38 @@
+name: TopicMessage
+description: PubSub Topic Message Structure
+fields:
+  - name: magic
+    type: UINT
+    length: 4
+    description: Magic number (0x544F5049)
+    key: true
+
+  - name: topic
+    type: UINT
+    length: 4
+    description: Data topic (TOPIC1/TOPIC2/MISC)
+
+  - name: global_seq
+    type: UINT
+    length: 4
+    description: Global sequence number
+
+  - name: topic_seq
+    type: UINT
+    length: 4
+    description: Topic-specific sequence number
+
+  - name: timestamp
+    type: ULONG
+    length: 8
+    description: Timestamp in nanoseconds
+
+  - name: data_size
+    type: UINT
+    length: 4
+    description: Size of data payload
+
+  - name: data
+    type: CHAR
+    length: 32
+    description: Message data (variable length)

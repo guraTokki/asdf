@@ -1,0 +1,132 @@
+# T2MA Japan Equity System Configuration
+id: 1001
+name: "T2MA_JAPAN_EQUITY"
+
+plugin:
+  module: "libT2MA.so"
+  search_path: "./build"
+  symbol: "create_t2ma_japan_equity"
+
+# File paths
+files:
+  spec_file: "./config/SPECs"  # YAML specs directory
+  master_file: "./config/MASTERs"  # YAML master directory
+  csv_file: "./trep_data/O_JAPAN_EQUITY_M_20250813.csv"
+  database_path: "./data/t2ma_japan_equity_master"
+
+# Record layouts for Japan Equity
+layouts:
+  master: "MMP_EQUITY_MASTER"      # 일본 주식 마스터
+  sise: "EQUITY_SISE"              # 일본 주식 체결
+  hoga: "EQUITY_1HOGA"             # 일본 주식 호가
+
+# HashMaster configuration - Japan Equity optimized
+master: "JAPAN_EQUITY_MASTER"
+
+sequence_storage_type: "hashmaster"   # file / hashmaster
+# Pub-Sub system configuration
+pubsub:
+  publisher:
+    database_name: "./data/t2ma_japan_equity_pubsub_db"
+    unix_socket_path: "/tmp/t2ma_japan.sock"
+    tcp_host: "127.0.0.1"
+    tcp_port: 9998  # 일반 T2MA와 다른 포트
+  
+  subscribers:
+    - client_id: 1001 # same as id
+      name: "T2MA_JAPAN_EQUITY" # name + "_" + pub_name
+      type: "tcp"
+      host: "127.0.0.1"
+      port: 8901
+      enabled: false
+    - client_id: 1001
+      name: "T2MA_JAPAN_EQUITY" # name + "_" + pub_name
+      type: "tcp"
+      host: "192.168.1.200"  # 일본 데이터 전용 서버
+      port: 8902
+      enabled: false
+    - client_id: 1001 # same as id or client_id pub_id (10011000)
+      name: "T2MA_JAPAN_EQUITY_DataGeneratorPub"  # name + "_" + pub_name
+      pub_id: 1000
+      pub_name: "DataGeneratorPub"
+      type: "unix"
+      socket_path: "/tmp/japan_feed1.sock"
+      enabled: true
+      topic_mask: 3 # 구독할 토픽에 대한 정보
+    - client_id: 1001
+      name: "T2MA_JAPAN_EQUITY" # name + "_" + pub_name
+      type: "unix" 
+      socket_path: "/tmp/japan_feed2.sock"
+      enabled: false
+
+# Message Queue configuration for Japan data
+messagequeue:
+  name: "/t2ma_japan_mq"
+  fallback_name: "/japan_trep_mq"
+  max_messages: 10      # 시스템 제한에 맞춤 (msg_max=10)
+  message_size: 1024    # 시스템 제한 내 (msgsize_max=8192)
+  mode: "read"
+
+# Statistics and monitoring
+monitoring:
+  stats_interval: 30  # seconds
+  log_interval: 50    # 일본 데이터가 많아 자주 로그
+
+# System behavior
+system:
+  event_loop_mode: "EVLOOP_ONCE"
+  auto_load_csv: true
+  enable_periodic_stats: true
+  symbol: "create_t2ma_japan_equity"
+
+# Message handler configuration
+handlers:
+  message_types:
+    TREP_DATA:
+      enabled: true
+      symbol: "handle_trep_data_message"
+    CONTROL:
+      enabled: true
+      symbol: "handle_control_message"
+
+
+  control_commands:
+    STATS:
+      enabled: true
+      symbol: "control_stats"
+    RELOAD_MASTER:
+      enabled: true
+      symbol: "control_reload_master_command"
+    CLEAR_STATS:
+      enabled: true
+      symbol: "control_clear_stats"
+    HEARTBEAT:
+      enabled: true
+      symbol: "control_heartbeat"
+    HELLOWORLD:
+      enabled: true
+      symbol: "execute_helloworld"
+
+# Scheduled handler configuration
+schedulers:
+  - name: "daily_master_reload"
+    enabled: true
+    type: "once"                # once, interval
+    run_at: "09:00:00"   # 실행할 절대시간 (UTC or local 지정 필요)
+    handler_symbol: "control_reload_master"
+
+  - name: "stats_collector"
+    enabled: false
+    type: "interval"            # interval 반복 실행
+    start_time: "09:00:00" # 시작 시각
+    end_time: "23:00:00"   # 종료 시각
+    interval_sec: 1            # 몇 초마다 실행할지
+    handler_symbol: "control_stats"
+
+  - name: "heartbeat_sender"
+    enabled: false
+    type: "interval"
+    start_time: "immediate"     # 프로그램 시작시 바로 시작
+    end_time: "none"            # 무기한
+    interval_sec: 5
+    handler_symbol: "control_heartbeat_japan"

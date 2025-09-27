@@ -1,0 +1,1148 @@
+# MMP_EQUITY_MASTER Layout Specification (Japan Equity)
+layout_name: "MMP_EQUITY_MASTER"
+description: "MMP Equity Master Layout for Japan Equity Trading"
+
+fields:
+  - key_field: true
+    korean_name: "로이터코드"
+    english_name: "RIC_CD"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "기본 로이터 코드(RIC) (ex. AAPL.O, 005930.KS, /AAPL.O, /005930.KS)"
+
+  - key_field: false
+    korean_name: "거래소코드"
+    english_name: "EXCHG_CD"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "거래소코드"
+
+  - key_field: false
+    korean_name: "통화코드"
+    english_name: "CUR_CD"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "현지통화코드"
+
+  - key_field: false
+    korean_name: "심볼코드"
+    english_name: "SYMBOL_CD"
+    field_type: "char"
+    length: 17
+    decimal: 0
+    description: "거래소에서 사용하는 종목 단축심볼코드 (ex. AAPL, A005930)"
+
+  - key_field: false
+    korean_name: "ISIN"
+    english_name: "ISIN_CD"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "ISIN 코드(미국 미제공, KR7005930003)"
+
+  - key_field: false
+    korean_name: "한글명"
+    english_name: "KOR_NM"
+    field_type: "char"
+    length: 81
+    decimal: 0
+    description: "한글명"
+
+  - key_field: false
+    korean_name: "영문명"
+    english_name: "ENG_NM"
+    field_type: "char"
+    length: 81
+    decimal: 0
+    description: "영문명"
+
+  - key_field: false
+    korean_name: "상장주식수"
+    english_name: "SHARES_VOL"
+    field_type: "char"
+    length: 21
+    decimal: 0
+    description: "99999999999999999999"
+
+  - key_field: false
+    korean_name: "거래기준일자"
+    english_name: "TRD_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "YYYYMMDD, 당일 영업일 (현지시간)"
+
+  - key_field: false
+    korean_name: "상장일자"
+    english_name: "SHARES_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "YYYYMMDD, 최초 상장일 (현지시간)"
+
+  - key_field: false
+    korean_name: "최종거래일자"
+    english_name: "HST_CLOSE_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "YYYYMMDD, 최종거래일자 (현지시간)"
+
+  - key_field: false
+    korean_name: "기준가"
+    english_name: "BASE_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (이하 가격 데이터 처리 동일)"
+
+  - key_field: false
+    korean_name: "전일종가"
+    english_name: "HST_CLOSE_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "상한가"
+    english_name: "UPLIMIT"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "하한가"
+    english_name: "DNLIMIT"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "액면가"
+    english_name: "FACE_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "유효자리수"
+    english_name: "TRD_UNITS"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "유효 자리수(0.9=1, 0.99=2 ...)"
+
+  - key_field: false
+    korean_name: "섹션구분"
+    english_name: "SEC_GB"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "일본: Market Segment"
+
+  - key_field: false
+    korean_name: "주식자산구분"
+    english_name: "EQY_GB"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "자산구분 코드"
+
+  - key_field: false
+    korean_name: "로이터업종구분"
+    english_name: "IND_GR_GB"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "로이터업종구분(Industry Group)"
+
+  - key_field: false
+    korean_name: "현지거래일자"
+    english_name: "LOCAL_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "YYYYMMDD"
+
+  - key_field: false
+    korean_name: "현지거래시간"
+    english_name: "LOCAL_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "hhmmss"
+
+  - key_field: false
+    korean_name: "SETTLEDATE"
+    english_name: "SETTLEDATE"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "SETTLEDATE"
+
+  - key_field: false
+    korean_name: "시가"
+    english_name: "OPEN_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "고가"
+    english_name: "HIGH_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "저가"
+    english_name: "LOW_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "종가"
+    english_name: "CLOSE_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "대비"
+    english_name: "NET_CHNG"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: -999999.9999)"
+
+  - key_field: false
+    korean_name: "등락율"
+    english_name: "PCT_CHNG"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "-99999.99"
+
+  - key_field: false
+    korean_name: "체결량"
+    english_name: "TRD_VOL"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "9999999999"
+
+  - key_field: false
+    korean_name: "누적거래량"
+    english_name: "SVOL"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "999999999999"
+
+  - key_field: false
+    korean_name: "누적거래대금"
+    english_name: "SAMT"
+    field_type: "char"
+    length: 15
+    decimal: 0
+    description: "999999999999, 현지 통화, 단위:천"
+
+  - key_field: false
+    korean_name: "거래대금단위"
+    english_name: "SAMT_SC"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "거래대금단위"
+
+  - key_field: false
+    korean_name: "1매도호가"
+    english_name: "ASK_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "9999999.9999, 거래소 코드표 거래소별 가격 소수점 자리수 참조"
+
+  - key_field: false
+    korean_name: "1매도호가잔량"
+    english_name: "ASK_SIZE"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "9999999999"
+
+  - key_field: false
+    korean_name: "1매수호가"
+    english_name: "BID_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "9999999.9999, 거래소 코드표 거래소별 가격 소수점 자리수 참조"
+
+  - key_field: false
+    korean_name: "1매수호가잔량"
+    english_name: "BID_SIZE"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "9999999999"
+
+  - key_field: false
+    korean_name: "시가총액"
+    english_name: "CAP_SAMT"
+    field_type: "char"
+    length: 21
+    decimal: 0
+    description: "9999999999999999, 현지 통화, 단위:천"
+
+  - key_field: false
+    korean_name: "현재가"
+    english_name: "TRD_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "현재가"
+
+  - key_field: false
+    korean_name: "수정종가"
+    english_name: "ADJUST_CLSOSE_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "수정주가(1465)"
+
+  - key_field: false
+    korean_name: "종가날짜"
+    english_name: "OFF_CLS_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "종가날짜"
+
+  - key_field: false
+    korean_name: "거래시간"
+    english_name: "SAL_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "SAL_TM"
+
+  - key_field: false
+    korean_name: "거래정지구분"
+    english_name: "TRD_STATUS"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "2:Halted, 3:Suspended"
+
+  - key_field: false
+    korean_name: "PRC_QL_CD"
+    english_name: "PRC_QL_CD"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "PRC_QL_CD"
+
+  - key_field: false
+    korean_name: "발행전거래여부"
+    english_name: "ISSUE_FLAG"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "Y:해당, \" \":미해당"
+
+  - key_field: false
+    korean_name: "주식종목분류"
+    english_name: "EQY_DETAIL_GB"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "주식자산구분의 상세분류 정보"
+
+  - key_field: false
+    korean_name: "현지시간계산"
+    english_name: "GMT_SECOND"
+    field_type: "int"
+    length: 4
+    decimal: 0
+    description: "GMT_SECOND(시간*60분*60초) 초단위"
+
+  - key_field: false
+    korean_name: "UPDATE_COUNT"
+    english_name: "UPDATE_COUNT"
+    field_type: "unsigned long"
+    length: 8
+    decimal: 0
+    description: "UPDATE_COUNT"
+
+  - key_field: false
+    korean_name: "SEND_MASTER_MAX"
+    english_name: "SEND_MASTER_MAX"
+    field_type: "unsigned short"
+    length: 2
+    decimal: 0
+    description: "SEND_MASTER_MAX"
+
+  - key_field: false
+    korean_name: "SEND_MASTER_COUNT"
+    english_name: "SEND_MASTER_COUNT"
+    field_type: "unsigned short"
+    length: 2
+    decimal: 0
+    description: "SEND_MASTER_COUNT"
+
+  - key_field: false
+    korean_name: "SEND_LAST_COUNT"
+    english_name: "SEND_LAST_COUNT"
+    field_type: "unsigned short"
+    length: 2
+    decimal: 0
+    description: "SEND_LAST_COUNT"
+
+  - key_field: false
+    korean_name: "ISIN"
+    english_name: "ISIN_CODE"
+    field_type: "char"
+    length: 133
+    decimal: 0
+    description: "ISIN 코드(미국 미제공, KR7005930003)"
+
+  - key_field: false
+    korean_name: "52주최고가"
+    english_name: "52WK_HIGH"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "52주최고가"
+
+  - key_field: false
+    korean_name: "52주최저가"
+    english_name: "52WK_LOW"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "52주최저가"
+
+  - key_field: false
+    korean_name: "52주최고가일"
+    english_name: "52W_HDAT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "52주최고가일"
+
+  - key_field: false
+    korean_name: "52주최저가일"
+    english_name: "52W_LDAT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "52주최저가일"
+
+  - key_field: false
+    korean_name: "배당금"
+    english_name: "DIVDEND"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "배당금"
+
+  - key_field: false
+    korean_name: "배당일"
+    english_name: "DIVPAYDATE"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "배당일"
+
+  - key_field: false
+    korean_name: "배당수익률"
+    english_name: "YIELD"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "배당수익률"
+
+  - key_field: false
+    korean_name: "EPS"
+    english_name: "EARNINGS"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "EPS"
+
+  - key_field: false
+    korean_name: "PER"
+    english_name: "PERATIO"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "PER"
+
+  - key_field: false
+    korean_name: "ACT_FLAG1"
+    english_name: "ACT_FLAG1"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "ACT_FLAG1"
+
+  - key_field: false
+    korean_name: "입회일"
+    english_name: "BUSINESS_DAY"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "입회일"
+
+  - key_field: false
+    korean_name: "시가총액기준통화"
+    english_name: "CAP_SAMT_CUR_CD"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "시가총액기준통화"
+
+  - key_field: false
+    korean_name: "TR TRADE FLAG"
+    english_name: "TR_TRD_FLG"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "TR TRADE FLAG"
+
+  - key_field: false
+    korean_name: "INSTRUMENT PHASE"
+    english_name: "INST_PHASE"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "INSTRUMENT PHASE"
+
+  - key_field: false
+    korean_name: "IND EQUILIBRM VOL"
+    english_name: "IEP_VOLUME"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "IND EQUILIBRM VOL"
+
+  - key_field: false
+    korean_name: "OPEN AUC VOL"
+    english_name: "OPN_AUCVOL"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "OPEN AUC VOL"
+
+  - key_field: false
+    korean_name: "분배여부"
+    english_name: "DIST_FLAG"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "분배여부(Y/N) TREP입수종목만분배"
+
+  - key_field: false
+    korean_name: "시가총액 업데이트일자"
+    english_name: "CAP_SAMT_UPDATE_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "시가총액 업데이트일자"
+
+  - key_field: false
+    korean_name: "선강퉁후강퉁구분"
+    english_name: "CHN_CON_E_INDICATER_CD"
+    field_type: "char"
+    length: 21
+    decimal: 0
+    description: "선강퉁후강퉁구분"
+
+  - key_field: false
+    korean_name: "거래소 국가코드"
+    english_name: "NATION_CD"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "거래소 국가코드"
+
+  - key_field: false
+    korean_name: "SEDOL 코드"
+    english_name: "SEDOL_CD"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "SEDOL 코드"
+
+  - key_field: false
+    korean_name: "액면가 통화코드"
+    english_name: "NORMAL_VAL_CUR"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "액면가 통화코드"
+
+  - key_field: false
+    korean_name: "중국시장구분"
+    english_name: "SHARE_CLASS"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "중국시장구분"
+
+  - key_field: false
+    korean_name: "자본금"
+    english_name: "MARKET_CAP"
+    field_type: "char"
+    length: 17
+    decimal: 0
+    description: "자본금"
+
+  - key_field: false
+    korean_name: "결산일자"
+    english_name: "SETTLE_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "결산일자"
+
+  - key_field: false
+    korean_name: "EPS일자"
+    english_name: "EPS_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "EPS일자"
+
+  - key_field: false
+    korean_name: "만기일자"
+    english_name: "EXPIRE_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "만기일자"
+
+  - key_field: false
+    korean_name: "주문단위"
+    english_name: "ORDER_SZ"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "주문단위"
+
+  - key_field: false
+    korean_name: "매도호가단위"
+    english_name: "BID_UNIT"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "매도호가단위"
+
+  - key_field: false
+    korean_name: "매수호가단위"
+    english_name: "ASK_UNIT"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "매수호가단위"
+
+  - key_field: false
+    korean_name: "Tick Size Type"
+    english_name: "TICK_SZ_TYPE"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "Tick Size Type"
+
+  - key_field: false
+    korean_name: "액면분할비율"
+    english_name: "SPLIT_RATE"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "액면분할비율"
+
+  - key_field: false
+    korean_name: "액면분할일자"
+    english_name: "SPLIT_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "액면분할일자"
+
+  - key_field: false
+    korean_name: "배당락일"
+    english_name: "EX_DIVIDEND_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "배당락일"
+
+  - key_field: false
+    korean_name: "연관종목"
+    english_name: "REFERENCE_CD"
+    field_type: "char"
+    length: 17
+    decimal: 0
+    description: "연관종목"
+
+  - key_field: false
+    korean_name: "시장편입구분"
+    english_name: "MARKET_IN"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "시장편입구분"
+
+  - key_field: false
+    korean_name: "SELL ONLY"
+    english_name: "SELLONLY_GB"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "SELL ONLY"
+
+  - key_field: false
+    korean_name: "VCM 대상 종목"
+    english_name: "VCM_GB"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "VCM 대상 종목"
+
+  - key_field: false
+    korean_name: "CAS 대상 종목"
+    english_name: "CAS_GB"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "CAS 대상 종목"
+
+  - key_field: false
+    korean_name: "전일대비기호"
+    english_name: "NET_CHNG_SIGN"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "전일대비기호"
+
+  - key_field: false
+    korean_name: "장구분"
+    english_name: "SESSION_GB"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "장구분"
+
+  - key_field: false
+    korean_name: "매도매수구분"
+    english_name: "TRAND_GB"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "매도매수구분"
+
+  - key_field: false
+    korean_name: "시가시간"
+    english_name: "OPEN_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "시가시간"
+
+  - key_field: false
+    korean_name: "고가시간"
+    english_name: "HIGH_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "고가시간"
+
+  - key_field: false
+    korean_name: "저가시간"
+    english_name: "LOW_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "저가시간"
+
+  - key_field: false
+    korean_name: "장종료시간"
+    english_name: "EXCH_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장종료시간 HHMMSS"
+
+  - key_field: false
+    korean_name: "VCM_CAS구분"
+    english_name: "LMT_STATUS"
+    field_type: "char"
+    length: 3
+    decimal: 0
+    description: "16:VCM, 17:CAS, 18:VCM+CAS"
+
+  - key_field: false
+    korean_name: "홍콩-R주여부"
+    english_name: "HKG_R_YN"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "홍콩-R주여부"
+
+  - key_field: false
+    korean_name: "홍콩-H주여부"
+    english_name: "HKG_H_YN"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "홍콩-H주여부"
+
+  - key_field: false
+    korean_name: "매도호가(CLOSE)"
+    english_name: "ASK_PRC_CLOSE"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "매도호가,미국만사용"
+
+  - key_field: false
+    korean_name: "매수호가(CLOSE)"
+    english_name: "BID_PRC_CLOSE"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "매수호가,미국만사용"
+
+  - key_field: false
+    korean_name: "매도호가잔량(CLOSE)"
+    english_name: "ASK_SIZE_CLOSE"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "매도호가잔량(3372발생시 저장)미국만사용"
+
+  - key_field: false
+    korean_name: "매수호가잔량(CLOSE)"
+    english_name: "BID_SIZE_CLOSE"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "매수호가잔량(3372발생시 저장)미국만사용"
+
+  - key_field: false
+    korean_name: "체결구분"
+    english_name: "TRD_GB"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "0:체결,1: 시세(현재가:홍콩Norminal Price))"
+
+  - key_field: false
+    korean_name: "장후거래가격(미국만)"
+    english_name: "AFTMKT_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장후거래가격(미국만)"
+
+  - key_field: false
+    korean_name: "시가총액-USA"
+    english_name: "CAP_SAMT1"
+    field_type: "char"
+    length: 21
+    decimal: 0
+    description: "시가총액-USA"
+
+  - key_field: false
+    korean_name: "주문단위(USA)"
+    english_name: "ORDER_SZ_A"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "주문단위(USA)"
+
+  - key_field: false
+    korean_name: "홍콩MAIN/GEN구분"
+    english_name: "MKT_SEGMNT"
+    field_type: "char"
+    length: 5
+    decimal: 0
+    description: "홍콩MAIN/GEN구분"
+
+  - key_field: false
+    korean_name: "종가수신구분"
+    english_name: "RCV_OFF_CLOSE_YN"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "종가수신구분(3372)"
+
+  - key_field: false
+    korean_name: "DISPLAY_NAME"
+    english_name: "DSPLY_NAME"
+    field_type: "char"
+    length: 17
+    decimal: 0
+    description: "DISPLAY_NAME(FID:3)"
+
+  - key_field: false
+    korean_name: "PRICE CODE 2"
+    english_name: "PRC_QL2"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "PRICE CODE 2"
+
+  - key_field: false
+    korean_name: "PRIMACT_1"
+    english_name: "PRIMACT_1"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "PRIMACT_1"
+
+  - key_field: false
+    korean_name: "호가일자"
+    english_name: "QUOTE_DATE"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "호가일자"
+
+  - key_field: false
+    korean_name: "호가시간"
+    english_name: "QUOTIM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "호가시간"
+
+  - key_field: false
+    korean_name: "장전거래일자"
+    english_name: "PREMKT_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "장전거래일자"
+
+  - key_field: false
+    korean_name: "장전거래시간"
+    english_name: "PREMKT_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장전거래시간"
+
+  - key_field: false
+    korean_name: "장전거래가격"
+    english_name: "PREMKT_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장전거래가격"
+
+  - key_field: false
+    korean_name: "장전거래체결량"
+    english_name: "PREMKT_VOL"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "장전거래체결량"
+
+  - key_field: false
+    korean_name: "장전거래대비"
+    english_name: "NCHNG_PRE"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장전거래대비"
+
+  - key_field: false
+    korean_name: "장전거래등략율"
+    english_name: "PCHNG_PRE"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "장전거래등략율"
+
+  - key_field: false
+    korean_name: "장전거래량"
+    english_name: "ACVOL_PRE"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장전거래량"
+
+  - key_field: false
+    korean_name: "장전거래시가"
+    english_name: "PREMKT_OPEN_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장전거래시가"
+
+  - key_field: false
+    korean_name: "장전거래고가"
+    english_name: "PREMKT_HIGH_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장전거래고가"
+
+  - key_field: false
+    korean_name: "장전거래저가"
+    english_name: "PREMKT_LOW_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장전거래저가"
+
+  - key_field: false
+    korean_name: "장전거래시가시간"
+    english_name: "PREMKT_OPEN_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장전거래시가시간"
+
+  - key_field: false
+    korean_name: "장전거래고가시간"
+    english_name: "PREMKT_HIGH_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장전거래고가시간"
+
+  - key_field: false
+    korean_name: "장전거래저가시간"
+    english_name: "PREMKT_LOW_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장전거래저가시간"
+
+  - key_field: false
+    korean_name: "장후거래일자"
+    english_name: "AFTMKT_DT"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "장후거래일자"
+
+  - key_field: false
+    korean_name: "장후거래시간"
+    english_name: "AFTMKT_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장후거래시간"
+
+  - key_field: false
+    korean_name: "장후거래체결량"
+    english_name: "AFTMKT_VOL"
+    field_type: "char"
+    length: 11
+    decimal: 0
+    description: "장후거래체결량"
+
+  - key_field: false
+    korean_name: "장후거래대비"
+    english_name: "NCHNG_AFT"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장후거래대비"
+
+  - key_field: false
+    korean_name: "장후거래등락율"
+    english_name: "PCHNG_AFT"
+    field_type: "char"
+    length: 10
+    decimal: 0
+    description: "장후거래등락율"
+
+  - key_field: false
+    korean_name: "장후거래량"
+    english_name: "ACVOL_AFT"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장후거래량"
+
+  - key_field: false
+    korean_name: "장후거래시가"
+    english_name: "AFTMKT_OPEN_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장후거래시가"
+
+  - key_field: false
+    korean_name: "장후거래고가"
+    english_name: "AFTMKT_HIGH_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장후거래고가"
+
+  - key_field: false
+    korean_name: "장후거래저가"
+    english_name: "AFTMKT_LOW_PRC"
+    field_type: "char"
+    length: 13
+    decimal: 0
+    description: "장후거래저가"
+
+  - key_field: false
+    korean_name: "장후거래시가시간"
+    english_name: "AFTMKT_OPEN_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장후거래시가시간"
+
+  - key_field: false
+    korean_name: "장후거래고가시간"
+    english_name: "AFTMKT_HIGH_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장후거래고가시간"
+
+  - key_field: false
+    korean_name: "장후거래저가시간"
+    english_name: "AFTMKT_LOW_PRC_TM"
+    field_type: "char"
+    length: 7
+    decimal: 0
+    description: "장후거래저가시간"
+
+  - key_field: false
+    korean_name: "기준가 FLAG"
+    english_name: "BASEPRICE_FLAG"
+    field_type: "char"
+    length: 2
+    decimal: 0
+    description: "Y: 기준가 trep데이터 업데이트 안함"
+
+  - key_field: false
+    korean_name: "FILLER"
+    english_name: "FILLER"
+    field_type: "char"
+    length: 182
+    decimal: 0
+    description: "FILLER"

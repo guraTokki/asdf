@@ -1,0 +1,308 @@
+# EQUITY_SISE Layout Specification
+layout_name: "EQUITY_SISE"
+description: "Equity SISE (Price) Data Layout"
+
+fields:
+  - key_field: true
+    korean_name: "DATA구분"
+    english_name: "DATA_GB"
+    field_type: "X"
+    length: 2
+    decimal: 0
+    description: "시세(A3)/지연시세(BR)"
+
+  - key_field: true
+    korean_name: "정보구분"
+    english_name: "INFO_GB"
+    field_type: "X"
+    length: 2
+    decimal: 0
+    description: "주식(22), DR(23), GDR(24)"
+
+  - key_field: true
+    korean_name: "시장구분"
+    english_name: "MKT_GB"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "B:코스콤해외정보"
+
+  - key_field: false
+    korean_name: "거래소코드"
+    english_name: "EXCHG_CD"
+    field_type: "X"
+    length: 3
+    decimal: 0
+    description: "거래소코드"
+
+  - key_field: false
+    korean_name: "전송일시"
+    english_name: "TRANS_TM"
+    field_type: "9"
+    length: 14
+    decimal: 0
+    description: "데이터 전송 시간 (YYYYMMDDhhmmss)"
+
+  - key_field: false
+    korean_name: "로이터코드"
+    english_name: "RIC_CD"
+    field_type: "X"
+    length: 16
+    decimal: 0
+    description: "기본 로이터 코드(RIC)"
+
+  - key_field: false
+    korean_name: "심볼코드(티커)"
+    english_name: "SYMBOL_CD"
+    field_type: "X"
+    length: 16
+    decimal: 0
+    description: "SYMBOL"
+
+  - key_field: false
+    korean_name: "현지거래일자"
+    english_name: "LOCAL_DT"
+    field_type: "9"
+    length: 8
+    decimal: 0
+    description: "YYYYMMDD"
+
+  - key_field: false
+    korean_name: "현지거래시간"
+    english_name: "LOCAL_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "hhmmss"
+
+  - key_field: false
+    korean_name: "한국거래일자"
+    english_name: "KOR_DT"
+    field_type: "9"
+    length: 8
+    decimal: 0
+    description: "YYYYMMDD"
+
+  - key_field: false
+    korean_name: "한국거래시간"
+    english_name: "KOR_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "hhmmss"
+
+  - key_field: false
+    korean_name: "시가"
+    english_name: "OPEN_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "고가"
+    english_name: "HIGH_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "저가"
+    english_name: "LOW_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "현재가"
+    english_name: "TRD_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "거래소 코드표 거래소별 가격 소수점 자리수 참조 (ex. 미국: 9999999.9999)"
+
+  - key_field: false
+    korean_name: "전일대비(기준가대비)구분"
+    english_name: "NET_CHNG_SIGN"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "1:상한, 2:상승, 3:보합, 4:하한, 5:하락"
+
+  - key_field: false
+    korean_name: "전일대비"
+    english_name: "NET_CHNG"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "Signed"
+
+  - key_field: false
+    korean_name: "등락율"
+    english_name: "PCT_CHNG"
+    field_type: "9"
+    length: 8
+    decimal: 4
+    description: "Signed"
+
+  - key_field: false
+    korean_name: "매수호가"
+    english_name: "BID_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "매수호가"
+
+  - key_field: false
+    korean_name: "매수호가잔량"
+    english_name: "BID_SIZE"
+    field_type: "9"
+    length: 10
+    decimal: 0
+    description: "매수호가잔량"
+
+  - key_field: false
+    korean_name: "매도호가"
+    english_name: "ASK_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "매도호가"
+
+  - key_field: false
+    korean_name: "매도호가잔량"
+    english_name: "ASK_SIZE"
+    field_type: "9"
+    length: 10
+    decimal: 0
+    description: "매도호가잔량"
+
+  - key_field: false
+    korean_name: "체결량"
+    english_name: "TRD_VOL"
+    field_type: "9"
+    length: 10
+    decimal: 0
+    description: "체결량"
+
+  - key_field: false
+    korean_name: "누적거래량"
+    english_name: "SVOL"
+    field_type: "9"
+    length: 12
+    decimal: 0
+    description: "누적거래량"
+
+  - key_field: false
+    korean_name: "누적거래대금"
+    english_name: "SAMT"
+    field_type: "9"
+    length: 14
+    decimal: 0
+    description: "누적거래대금"
+
+  - key_field: false
+    korean_name: "장구분"
+    english_name: "SESSION_GB"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "0:장중, 1:장전, 2:장후"
+
+  - key_field: false
+    korean_name: "매도매수구분"
+    english_name: "TRAND_GB"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "1:매수자체결(매도호가체결 + )  2:매도자체결(매수호가체결 - )"
+
+  - key_field: false
+    korean_name: "시가시간"
+    english_name: "OPEN_PRC_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "HHMMSS"
+
+  - key_field: false
+    korean_name: "고가시간"
+    english_name: "HIGH_PRC_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "HHMMSS"
+
+  - key_field: false
+    korean_name: "저가시간"
+    english_name: "LOW_PRC_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "HHMMSS"
+
+  - key_field: false
+    korean_name: "체결구분"
+    english_name: "TRD_GB"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "0:체결,  1:시세(현재가: 홍콩:Nominal Price)"
+
+  - key_field: false
+    korean_name: "장후거래가격"
+    english_name: "AFTMKT_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "장후거래가격 : 대상거래소 (뉴욕 나스닥 아멕스)"
+
+  - key_field: false
+    korean_name: "Sales Condition"
+    english_name: "TTYPE"
+    field_type: "X"
+    length: 2
+    decimal: 0
+    description: "FID:4757, 11622참조"
+
+  - key_field: false
+    korean_name: "기준가대비구분"
+    english_name: "BASE_NET_CHNG_SIGN"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "장후기준가대비구분(나스닥베이직 ONLY)"
+
+  - key_field: false
+    korean_name: "기준가대비"
+    english_name: "BASE_NET_CHNG"
+    field_type: "9"
+    length: 12
+    decimal: 1
+    description: "장후기준가대비(나스닥베이직 ONLY)"
+
+  - key_field: false
+    korean_name: "기준가대비등락율"
+    english_name: "BASE_PCT_CHNG"
+    field_type: "9"
+    length: 8
+    decimal: 4
+    description: "장후기준가대비등락율(나스닥베이직 ONLY)"
+
+  - key_field: false
+    korean_name: "FILLER"
+    english_name: "FILLER"
+    field_type: "X"
+    length: 13
+    decimal: 0
+    description: "FILLER"
+
+  - key_field: false
+    korean_name: "FF"
+    english_name: "FF"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "FF"

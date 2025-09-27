@@ -1,0 +1,132 @@
+# BATCH_RIC_CODE_16_EQUITY Layout Specification
+layout_name: "BATCH_RIC_CODE_16_EQUITY"
+description: "Batch RIC Code 16 Equity Master Layout"
+
+fields:
+  - key_field: true
+    korean_name: "로이터코드"
+    english_name: "RIC_CD"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "기본 로이터 코드(RIC)"
+
+  - key_field: false
+    korean_name: "한글명"
+    english_name: "KOR_NM"
+    field_type: "char"
+    length: 80
+    decimal: 0
+    description: "한글명"
+
+  - key_field: false
+    korean_name: "자본금"
+    english_name: "MARKET_CAP"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "자본금"
+
+  - key_field: false
+    korean_name: "결산일자"
+    english_name: "SETTLE_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "결산일자"
+
+  - key_field: false
+    korean_name: "EPS일자"
+    english_name: "EPS_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "EPS일자"
+
+  - key_field: false
+    korean_name: "만기일자"
+    english_name: "EXPIRE_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "만기일자"
+
+  - key_field: false
+    korean_name: "액면분할비율"
+    english_name: "SPLIT_RATE"
+    field_type: "char"
+    length: 9
+    decimal: 0
+    description: "액면분할비율 999.99999"
+
+  - key_field: false
+    korean_name: "액면분할일자"
+    english_name: "SPLIT_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "액면분할일자"
+
+  - key_field: false
+    korean_name: "중국연관종목코드"
+    english_name: "REFERENCE_CD"
+    field_type: "char"
+    length: 16
+    decimal: 0
+    description: "중국연관종목코드"
+
+  - key_field: false
+    korean_name: "홍콩R주 여부"
+    english_name: "HK_R_YN"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "홍콩R주 여부"
+
+  - key_field: false
+    korean_name: "홍콩H주 여부"
+    english_name: "HK_H_YN"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "홍콩H주 여부"
+
+  - key_field: false
+    korean_name: "액면가"
+    english_name: "FACE_PRC"
+    field_type: "char"
+    length: 12
+    decimal: 0
+    description: "액면가"
+
+  - key_field: false
+    korean_name: "영문명"
+    english_name: "ENG_NM"
+    field_type: "char"
+    length: 80
+    decimal: 0
+    description: "영문명"
+
+  - key_field: false
+    korean_name: "최종거래일자"
+    english_name: "HST_CLOSE_DT"
+    field_type: "char"
+    length: 8
+    decimal: 0
+    description: "영업일 기준 직전거래일자"
+
+  - key_field: false
+    korean_name: "ETF배수"
+    english_name: "LEVERAGE"
+    field_type: "char"
+    length: 4
+    decimal: 0
+    description: "ETF배수"
+
+  - key_field: false
+    korean_name: "FILLER5"
+    english_name: "FILLER5"
+    field_type: "char"
+    length: 1
+    decimal: 0
+    description: "FILLER5"

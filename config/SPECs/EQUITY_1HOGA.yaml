@@ -1,0 +1,140 @@
+# EQUITY_1HOGA Layout Specification
+layout_name: "EQUITY_1HOGA"
+description: "Equity 1-level Quote Data Layout"
+
+fields:
+  - key_field: true
+    korean_name: "DATA구분"
+    english_name: "DATA_GB"
+    field_type: "X"
+    length: 2
+    decimal: 0
+    description: "시세(A3)/지연시세(BR)"
+
+  - key_field: true
+    korean_name: "정보구분"
+    english_name: "INFO_GB"
+    field_type: "X"
+    length: 2
+    decimal: 0
+    description: "주식(22), DR(23), GDR(24)"
+
+  - key_field: true
+    korean_name: "시장구분"
+    english_name: "MKT_GB"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "B:코스콤해외정보"
+
+  - key_field: false
+    korean_name: "거래소코드"
+    english_name: "EXCHG_CD"
+    field_type: "X"
+    length: 3
+    decimal: 0
+    description: "거래소코드"
+
+  - key_field: false
+    korean_name: "전송일시"
+    english_name: "TRANS_TM"
+    field_type: "9"
+    length: 14
+    decimal: 0
+    description: "데이터 전송 시간 (YYYYMMDDhhmmss)"
+
+  - key_field: false
+    korean_name: "로이터코드"
+    english_name: "RIC_CD"
+    field_type: "X"
+    length: 16
+    decimal: 0
+    description: "기본 로이터 코드(RIC)"
+
+  - key_field: false
+    korean_name: "심볼코드(티커)"
+    english_name: "SYMBOL_CD"
+    field_type: "X"
+    length: 16
+    decimal: 0
+    description: "SYMBOL"
+
+  - key_field: false
+    korean_name: "현지거래일자"
+    english_name: "LOCAL_DT"
+    field_type: "9"
+    length: 8
+    decimal: 0
+    description: "YYYYMMDD"
+
+  - key_field: false
+    korean_name: "현지거래시간"
+    english_name: "LOCAL_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "hhmmss"
+
+  - key_field: false
+    korean_name: "한국거래일자"
+    english_name: "KOR_DT"
+    field_type: "9"
+    length: 8
+    decimal: 0
+    description: "YYYYMMDD"
+
+  - key_field: false
+    korean_name: "한국거래시간"
+    english_name: "KOR_TM"
+    field_type: "9"
+    length: 6
+    decimal: 0
+    description: "hhmmss"
+
+  - key_field: false
+    korean_name: "매수1호가"
+    english_name: "BID1_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 4
+    description: "매수1호가"
+
+  - key_field: false
+    korean_name: "매도1호가"
+    english_name: "ASK1_PRC"
+    field_type: "9"
+    length: 12
+    decimal: 4
+    description: "매도1호가"
+
+  - key_field: false
+    korean_name: "매수1호가잔량"
+    english_name: "BID1_VOL"
+    field_type: "9"
+    length: 10
+    decimal: 0
+    description: "매수1호가잔량"
+
+  - key_field: false
+    korean_name: "매도1호가잔량"
+    english_name: "ASK1_VOL"
+    field_type: "9"
+    length: 10
+    decimal: 0
+    description: "매도1호가잔량"
+
+  - key_field: false
+    korean_name: "FILLER"
+    english_name: "FILLER"
+    field_type: "9"
+    length: 74
+    decimal: 0
+    description: "FILLER"
+
+  - key_field: false
+    korean_name: "FF"
+    english_name: "FF"
+    field_type: "X"
+    length: 1
+    decimal: 0
+    description: "FF"
