@@ -34,8 +34,11 @@ void EventUnixDomainSocket::connect(const std::string& path) {
     bufferevent_setcb(_bev, EventBase::static_read_cb, EventBase::static_write_cb, EventBase::static_event_cb, this);
     bufferevent_enable(_bev, EV_READ | EV_WRITE);
     
-    if (bufferevent_socket_connect(_bev, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-        bufferevent_free(_bev); _bev = nullptr;
+    if ( (_bev, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        if(_bev != nullptr) {
+            bufferevent_free(_bev);
+            _bev = nullptr;
+        }
         throw std::runtime_error("Failed to connect");
     }
     _connected = true;

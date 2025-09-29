@@ -22,7 +22,7 @@ SimpleSubscriber::~SimpleSubscriber() {
     if (_sequence_storage) {
         delete _sequence_storage;
     }
-    if (_publisher_sequence_record) {
+    if (_publisher_sequence_record && _sequence_storage_type == StorageType::FILE_STORAGE) {
         delete _publisher_sequence_record;
     }
 }

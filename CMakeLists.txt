@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.16)
+# Lowered CMake version requirement for GCC 4.8.5 compatibility
+cmake_minimum_required(VERSION 3.5)
 
 project(asdf LANGUAGES CXX)
 
-# C++ standard
-set(CMAKE_CXX_STANDARD 17)
+# C++ standard (changed to C++14 for GCC 4.8.5 compatibility)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

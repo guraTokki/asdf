@@ -23,6 +23,11 @@ MemoryMaster::MemoryMaster(const MasterConfig& config)
         _config._max_record_count, _config._max_record_size);
 }
 
+// Destructor
+MemoryMaster::~MemoryMaster() {
+    pthread_mutex_destroy(&_rw_mutex);
+}
+
 // Initialize the memory master system
 int MemoryMaster::init() {
     if (_initialized) {
@@ -69,7 +74,7 @@ int MemoryMaster::init() {
 // Clear all data from memory
 int MemoryMaster::clear() {
     if (_config._use_lock) {
-        std::unique_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     try {
@@ -93,10 +98,16 @@ int MemoryMaster::clear() {
         _collision_count = 0;
 
         log(LOG_INFO, "MemoryMaster cleared successfully");
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return MASTER_OK;
 
     } catch (const std::exception& e) {
         log(LOG_ERROR, "Failed to clear MemoryMaster: %s", e.what());
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return MASTER_ERROR_MEMORY_ERROR;
     }
 }
@@ -114,7 +125,7 @@ int MemoryMaster::put(const char* pkey, const char* skey, const char* record, in
     }
 
     if (_config._use_lock) {
-        std::unique_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     try {
@@ -125,6 +136,9 @@ int MemoryMaster::put(const char* pkey, const char* skey, const char* record, in
         auto primary_it = _primary_index.find(primary_key);
         if (primary_it != _primary_index.end()) {
             log(LOG_ERROR, "Primary key already exists: %s", pkey);
+            if (_config._use_lock) {
+                pthread_mutex_unlock(&_rw_mutex);
+            }
             return MASTER_ERROR_KEY_EXISTS;
         }
 
@@ -133,6 +147,9 @@ int MemoryMaster::put(const char* pkey, const char* skey, const char* record, in
             auto secondary_it = _secondary_index.find(secondary_key);
             if (secondary_it != _secondary_index.end()) {
                 log(LOG_ERROR, "Secondary key already exists: %s", skey);
+                if (_config._use_lock) {
+                    pthread_mutex_unlock(&_rw_mutex);
+                }
                 return MASTER_ERROR_KEY_EXISTS;
             }
         }
@@ -141,6 +158,9 @@ int MemoryMaster::put(const char* pkey, const char* skey, const char* record, in
         int slot = find_free_slot();
         if (slot == -1) {
             log(LOG_ERROR, "No free slots available");
+            if (_config._use_lock) {
+                pthread_mutex_unlock(&_rw_mutex);
+            }
             return MASTER_ERROR_NO_SPACE;
         }
 
@@ -159,10 +179,16 @@ int MemoryMaster::put(const char* pkey, const char* skey, const char* record, in
         log(LOG_DEBUG, "Put record: pkey=%s, skey=%s, size=%d, slot=%d",
             pkey, skey ? skey : "(null)", record_size, slot);
 
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return MASTER_OK;
 
     } catch (const std::exception& e) {
         log(LOG_ERROR, "Failed to put record: %s", e.what());
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return MASTER_ERROR_MEMORY_ERROR;
     }
 }
@@ -174,7 +200,7 @@ char* MemoryMaster::get_by_primary(const char* pkey) {
     }
 
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     update_statistics_on_lookup();
@@ -184,13 +210,23 @@ char* MemoryMaster::get_by_primary(const char* pkey) {
         auto it = _primary_index.find(primary_key);
 
         if (it != _primary_index.end() && _records[it->second] && _records[it->second]->is_valid) {
-            return _records[it->second]->data.data();
+            char* result = _records[it->second]->data.data();
+            if (_config._use_lock) {
+                pthread_mutex_unlock(&_rw_mutex);
+            }
+            return result;
         }
 
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return nullptr;
 
     } catch (const std::exception& e) {
         log(LOG_ERROR, "Failed to get record by primary key: %s", e.what());
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return nullptr;
     }
 }
@@ -202,7 +238,7 @@ char* MemoryMaster::get_by_secondary(const char* skey) {
     }
 
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     update_statistics_on_lookup();
@@ -212,13 +248,23 @@ char* MemoryMaster::get_by_secondary(const char* skey) {
         auto it = _secondary_index.find(secondary_key);
 
         if (it != _secondary_index.end() && _records[it->second] && _records[it->second]->is_valid) {
-            return _records[it->second]->data.data();
+            char* result = _records[it->second]->data.data();
+            if (_config._use_lock) {
+                pthread_mutex_unlock(&_rw_mutex);
+            }
+            return result;
         }
 
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return nullptr;
 
     } catch (const std::exception& e) {
         log(LOG_ERROR, "Failed to get record by secondary key: %s", e.what());
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return nullptr;
     }
 }
@@ -230,7 +276,7 @@ int MemoryMaster::del(const char* pkey) {
     }
 
     if (_config._use_lock) {
-        std::unique_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     try {
@@ -238,6 +284,9 @@ int MemoryMaster::del(const char* pkey) {
         auto primary_it = _primary_index.find(primary_key);
 
         if (primary_it == _primary_index.end()) {
+            if (_config._use_lock) {
+                pthread_mutex_unlock(&_rw_mutex);
+            }
             return MASTER_ERROR_KEY_NOT_FOUND;
         }
 
@@ -245,6 +294,9 @@ int MemoryMaster::del(const char* pkey) {
         auto& record = _records[slot];
 
         if (!record || !record->is_valid) {
+            if (_config._use_lock) {
+                pthread_mutex_unlock(&_rw_mutex);
+            }
             return MASTER_ERROR_KEY_NOT_FOUND;
         }
 
@@ -263,10 +315,16 @@ int MemoryMaster::del(const char* pkey) {
 
         log(LOG_DEBUG, "Deleted record: pkey=%s, slot=%d", pkey, slot);
 
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return MASTER_OK;
 
     } catch (const std::exception& e) {
         log(LOG_ERROR, "Failed to delete record: %s", e.what());
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return MASTER_ERROR_MEMORY_ERROR;
     }
 }
@@ -274,7 +332,7 @@ int MemoryMaster::del(const char* pkey) {
 // Get system statistics
 MasterStats MemoryMaster::get_statistics() {
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     MasterStats stats = {};
@@ -283,6 +341,9 @@ MasterStats MemoryMaster::get_statistics() {
     stats.used_records = stats.total_records - stats.free_records;
     stats.record_utilization = static_cast<double>(stats.used_records) / stats.total_records;
 
+    if (_config._use_lock) {
+        pthread_mutex_unlock(&_rw_mutex);
+    }
     return stats;
 }
 
@@ -308,17 +369,25 @@ void MemoryMaster::display_statistics() {
 // Get current record count
 int MemoryMaster::get_record_count() const {
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
-    return _config._max_record_count - static_cast<int>(_free_slots.size());
+    int result = _config._max_record_count - static_cast<int>(_free_slots.size());
+    if (_config._use_lock) {
+        pthread_mutex_unlock(&_rw_mutex);
+    }
+    return result;
 }
 
 // Get free record count
 int MemoryMaster::get_free_record_count() const {
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
-    return static_cast<int>(_free_slots.size());
+    int result = static_cast<int>(_free_slots.size());
+    if (_config._use_lock) {
+        pthread_mutex_unlock(&_rw_mutex);
+    }
+    return result;
 }
 
 // Validate system integrity
@@ -328,7 +397,7 @@ bool MemoryMaster::validate_integrity() {
     }
 
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     try {
@@ -336,11 +405,17 @@ bool MemoryMaster::validate_integrity() {
         for (const auto& pair : _primary_index) {
             int slot = pair.second;
             if (slot < 0 || slot >= _config._max_record_count) {
+                if (_config._use_lock) {
+                    pthread_mutex_unlock(&_rw_mutex);
+                }
                 return false;
             }
 
             auto& record = _records[slot];
             if (!record || !record->is_valid || record->primary_key != pair.first) {
+                if (_config._use_lock) {
+                    pthread_mutex_unlock(&_rw_mutex);
+                }
                 return false;
             }
         }
@@ -348,19 +423,31 @@ bool MemoryMaster::validate_integrity() {
         for (const auto& pair : _secondary_index) {
             int slot = pair.second;
             if (slot < 0 || slot >= _config._max_record_count) {
+                if (_config._use_lock) {
+                    pthread_mutex_unlock(&_rw_mutex);
+                }
                 return false;
             }
 
             auto& record = _records[slot];
             if (!record || !record->is_valid || record->secondary_key != pair.first) {
+                if (_config._use_lock) {
+                    pthread_mutex_unlock(&_rw_mutex);
+                }
                 return false;
             }
         }
 
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return true;
 
     } catch (const std::exception& e) {
         log(LOG_ERROR, "Integrity validation failed: %s", e.what());
+        if (_config._use_lock) {
+            pthread_mutex_unlock(&_rw_mutex);
+        }
         return false;
     }
 }
@@ -368,7 +455,7 @@ bool MemoryMaster::validate_integrity() {
 // Get detailed memory master statistics
 MemoryMaster::MemoryMasterStats MemoryMaster::get_memory_statistics() const {
     if (_config._use_lock) {
-        std::shared_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     MemoryMasterStats stats = {};
@@ -399,19 +486,26 @@ MemoryMaster::MemoryMasterStats MemoryMaster::get_memory_statistics() const {
     stats.load_factor_primary = static_cast<double>(_primary_index.size()) / _config._hash_count;
     stats.load_factor_secondary = static_cast<double>(_secondary_index.size()) / _config._hash_count;
 
+    if (_config._use_lock) {
+        pthread_mutex_unlock(&_rw_mutex);
+    }
     return stats;
 }
 
 // Reset all statistics counters
 void MemoryMaster::reset_statistics() {
     if (_config._use_lock) {
-        std::unique_lock<std::shared_mutex> lock(_rw_mutex);
+        pthread_mutex_lock(&_rw_mutex);
     }
 
     _lookup_count = 0;
     _insert_count = 0;
     _delete_count = 0;
     _collision_count = 0;
+
+    if (_config._use_lock) {
+        pthread_mutex_unlock(&_rw_mutex);
+    }
 }
 
 // Estimate memory usage in bytes

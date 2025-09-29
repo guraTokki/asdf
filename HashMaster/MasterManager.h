@@ -2,6 +2,7 @@
 #define MASTER_MANAGER_H
 
 #include "Master.h"
+#include "../common/Compat.h"  // For GCC 4.8.5 compatibility
 #include <string>
 #include <map>
 #include <memory>

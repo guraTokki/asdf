@@ -4,12 +4,12 @@
 #include <vector>
 #include <map>
 #include <memory>
-#include <filesystem>
 #include <sstream>
 #include <chrono>
 #include <sys/stat.h>
 #include <algorithm>
 #include <cctype>
+#include <unistd.h>
 
 #include "../common/db_sam.h"
 #include "../HashMaster/BinaryRecord.h"
@@ -42,7 +42,9 @@ int main(int argc, char* argv[]) {
     string command = (argc > 2) ? argv[2] : "info";
 
     // Check if database exists
-    if (!filesystem::exists(db_path + ".idx") || !filesystem::exists(db_path + ".data")) {
+    string idx_file = db_path + ".idx";
+    string data_file = db_path + ".data";
+    if (access(idx_file.c_str(), F_OK) != 0 || access(data_file.c_str(), F_OK) != 0) {
         cerr << "Error: Database files not found at " << db_path << endl;
         cerr << "Expected files: " << db_path << ".idx, " << db_path << ".data" << endl;
         return 1;

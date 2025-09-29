@@ -2,11 +2,12 @@
 #define MEMORY_MASTER_H
 
 #include "Master.h"
+#include "../common/Compat.h"  // For GCC 4.8.5 compatibility
 #include <unordered_map>
 #include <memory>
 #include <vector>
 #include <mutex>
-#include <shared_mutex>
+// Note: shared_mutex not available in GCC 4.8.5, using regular mutex
 
 // Memory-based configuration
 struct MemoryMasterConfig : public MasterConfig {
@@ -54,8 +55,8 @@ private:
     std::unordered_map<std::string, int> _secondary_index;
     std::vector<int> _free_slots;
 
-    // Thread safety
-    mutable std::shared_mutex _rw_mutex;
+    // Process-level thread safety using pthread_mutex
+    mutable pthread_mutex_t _rw_mutex;
 
     // Statistics
     mutable int _lookup_count;
@@ -90,7 +91,7 @@ public:
     /**
      * @brief Destructor
      */
-    ~MemoryMaster() override = default;
+    ~MemoryMaster() override;
 
     // Disable copy constructor and assignment
     MemoryMaster(const MemoryMaster&) = delete;
