@@ -1,5 +1,9 @@
 # ASDF (All Source Data Feed)
 
+https://auth.openai.com/oauth/authorize?response_type=code&client_id=app_EMoamEEZ73f0CkXaXp7hrann&redirect_uri=http%3A%2F%2Flocalhost%3A1455%2Fauth%2Fcallback&scope=openid%20profil
+e%20email%20offline_access&code_challenge=QoEc-aZWtC81c5Vb2qUT2h3BCxltepDSs2J_tOFKK5U&code_challenge_method=S256&id_token_add_organizations=true&codex_cli_simplified_flow=true&stat
+e=Pa1VYhjrJKPWFMx0DxMHMdfYHdg8rUVpnpADYbknW7Q&originator=codex_cli_rs
+
 고성능 C++ 이벤트 기반 Pub/Sub 시스템
 
 ## 개요
